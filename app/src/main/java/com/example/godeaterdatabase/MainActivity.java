@@ -1,13 +1,10 @@
 package com.example.godeaterdatabase;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AragamiAdapter aragamiAdapter;
-    List<aragamiData> aragamiDataList = new ArrayList<>();
+    List<AragamiData> aragamiDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         aragamiDataList.addAll(databaseAccess.getQuotes());
         databaseAccess.close();
         
-        Collections.sort(aragamiDataList, new Comparator<aragamiData>() {
+        Collections.sort(aragamiDataList, new Comparator<AragamiData>() {
             @Override
-            public int compare(aragamiData o1, aragamiData o2) {
+            public int compare(AragamiData o1, AragamiData o2) {
                 return o1.name.compareTo(o2.name);
             }
         });

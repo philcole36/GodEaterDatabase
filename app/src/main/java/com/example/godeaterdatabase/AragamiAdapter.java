@@ -1,6 +1,8 @@
 package com.example.godeaterdatabase;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +16,8 @@ import java.util.List;
 import java.util.Random;
 
 class AragamiAdapter extends RecyclerView.Adapter<AragamiAdapter.MyViewHolder> {
-    List<aragamiData> studentDataList;
-    public AragamiAdapter(List<aragamiData> studentDataList) {
+    List<AragamiData> studentDataList;
+    public AragamiAdapter(List<AragamiData> studentDataList) {
         this.studentDataList=studentDataList;
     }
 
@@ -32,12 +34,24 @@ class AragamiAdapter extends RecyclerView.Adapter<AragamiAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder viewHolder, int i) {
-        aragamiData data=studentDataList.get(i);
+        final AragamiData data=studentDataList.get(i);
         Random rnd = new Random();
         int currentColor = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         viewHolder.parent.setBackgroundColor(currentColor);
         viewHolder.name.setText(data.name);
         viewHolder.details.setText(String.valueOf(data.details));
+
+        viewHolder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AragamiPage.class);
+                intent.putExtra("aragami_name", data.name);
+
+                intent.putExtra("aragami_details", data.details);
+
+                view.getContext().startActivity(intent);
+            }
+        });
 
     }
 
@@ -54,6 +68,7 @@ class AragamiAdapter extends RecyclerView.Adapter<AragamiAdapter.MyViewHolder> {
             parent=itemView.findViewById(R.id.parent);
             name=itemView.findViewById(R.id.name);
             details=itemView.findViewById(R.id.details);
+
         }
     }
 }

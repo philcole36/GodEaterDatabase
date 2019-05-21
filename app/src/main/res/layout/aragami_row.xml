@@ -48,7 +48,7 @@
                 android:layout_marginTop="8dp"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/ougateiru" />
+                card_view:srcCompat="@drawable/orgetail" />
 
         </android.support.constraint.ConstraintLayout>
 
