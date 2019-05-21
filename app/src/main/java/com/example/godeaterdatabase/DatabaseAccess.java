@@ -56,16 +56,17 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<String> getQuotes() {
-        List<String> list = new ArrayList<>();
+    public List<AragamiData> getQuotes() {
+        List<AragamiData> DataList = new ArrayList<>();
+        AragamiData data;
         Cursor cursor = database.rawQuery("SELECT * FROM Aragami", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            list.add(cursor.getString(1));
+            data = new AragamiData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+            DataList.add(data);
             cursor.moveToNext();
         }
         cursor.close();
-        return list;
+        return DataList;
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AragamiAdapter aragamiAdapter;
-    private List<aragamiData> aragamiDataList = new ArrayList<>();
+    List<AragamiData> aragamiDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +26,19 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(aragamiAdapter);
         AragamiDataPrepare();
+        
     }
 
     private void AragamiDataPrepare() {
-        aragamiData data = new aragamiData("Orgetail", "A small Aragami whose tail resembles a demon's face. \n" +
-                "Usually subsisting on the corpses of other Aragami, it is prolific and found throughout the world. Although new breeds of Aragami have been growing, Ogretail show no signs of diminishing in number. \n" +
-                "\n" +
-                "If attacked from the side, it falls quickly, However, its tail spin attack is powerful. When it clenches its legs, make sure to back away. ");
-        aragamiDataList.add(data);
-        data = new aragamiData("sai", "1");
-        aragamiDataList.add(data);
-        data = new aragamiData("raghu", "2");
-        aragamiDataList.add(data);
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        aragamiDataList.addAll(databaseAccess.getQuotes());
+        databaseAccess.close();
         
-        Collections.sort(aragamiDataList, new Comparator<aragamiData>() {
+        Collections.sort(aragamiDataList, new Comparator<AragamiData>() {
             @Override
-            public int compare(aragamiData o1, aragamiData o2) {
+            public int compare(AragamiData o1, AragamiData o2) {
                 return o1.name.compareTo(o2.name);
             }
         });
