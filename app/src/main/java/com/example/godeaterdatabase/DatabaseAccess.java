@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,16 +57,17 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<String> getQuotes() {
-        List<String> list = new ArrayList<>();
+    public List<aragamiData> getQuotes() {
+        List<aragamiData> DataList = new ArrayList<>();
+        aragamiData data;
         Cursor cursor = database.rawQuery("SELECT * FROM Aragami", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            list.add(cursor.getString(1));
+            data = new aragamiData(cursor.getString(0), cursor.getString(1));
+            DataList.add(data);
             cursor.moveToNext();
         }
         cursor.close();
-        return list;
+        return DataList;
     }
 }
