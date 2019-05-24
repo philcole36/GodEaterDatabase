@@ -21,34 +21,39 @@
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="124dp"
-                android:layout_height="0dp"
+                android:layout_width="234dp"
+                android:layout_height="33dp"
                 android:layout_marginStart="8dp"
-                android:gravity="center"
-                android:textColor="#FFF"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorAccent"
+                android:fontFamily="Helvetica"
+                android:gravity="start"
+                android:textColor="@color/textColor"
                 android:textSize="25sp"
-                card_view:layout_constraintStart_toEndOf="@+id/imageView"
+                android:textStyle="bold"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/aragami_pic"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details"
-                android:layout_width="237dp"
-                android:layout_height="64dp"
+                android:layout_width="234dp"
+                android:layout_height="65dp"
                 android:layout_marginStart="8dp"
-                android:gravity="left"
-                android:textColor="#FFF"
+                android:gravity="start"
                 android:textSize="12sp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toEndOf="@+id/imageView" />
-
+                card_view:layout_constraintStart_toEndOf="@+id/aragami_pic"
+                android:background="@color/colorPrimary"
+                android:fontFamily="Helvetica"
+                android:textColor="@color/textColor"/>
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/aragami_pic"
                 android:layout_width="142dp"
                 android:layout_height="92dp"
                 android:layout_marginTop="8dp"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/orgetail" />
+                card_view:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
 

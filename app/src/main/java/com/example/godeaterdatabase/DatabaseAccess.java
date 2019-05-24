@@ -1,14 +1,19 @@
 package com.example.godeaterdatabase;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAccess {
+import static android.content.ContentValues.TAG;
+
+public class DatabaseAccess extends Application {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
@@ -56,13 +61,18 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<AragamiData> getQuotes() {
+    public List<AragamiData> getData() {
         List<AragamiData> DataList = new ArrayList<>();
         AragamiData data;
         Cursor cursor = database.rawQuery("SELECT * FROM Aragami", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            data = new AragamiData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+
+            data = new AragamiData(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), R.drawable.orgetail);
+
+
+            Log.d(TAG, "getData: Cursor Image:" + cursor.getInt(4));
+            Log.d(TAG, "getData: Cursor Image:" + cursor.getString(4));
             DataList.add(data);
             cursor.moveToNext();
         }
@@ -70,3 +80,4 @@ public class DatabaseAccess {
         return DataList;
     }
 }
+

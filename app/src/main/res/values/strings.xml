@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GodEaterDatabase</string>
+    <string name="detail_heading">Details</string>
+    <string name="name_heading">Name</string>
+    <string name="weakness_heading">Weakness</string>
+    <string name="bonds_heading">Breakable Bonds</string>
 </resources>

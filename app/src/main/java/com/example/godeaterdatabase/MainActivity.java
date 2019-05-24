@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         recyclerView = findViewById(R.id.recycler_view);
         aragamiAdapter = new AragamiAdapter(aragamiDataList);
         RecyclerView.LayoutManager manager = new GridLayoutManager(this, 1);
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        aragamiDataList.addAll(databaseAccess.getQuotes());
+        aragamiDataList.addAll(databaseAccess.getData());
         databaseAccess.close();
         
         Collections.sort(aragamiDataList, new Comparator<AragamiData>() {
